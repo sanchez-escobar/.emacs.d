@@ -15,7 +15,8 @@
       (my-init-packages rest))))
 
 (defvar local-packages
-  '(less-css-mode ;; programming modes
+  '(material-theme
+    less-css-mode ;; programming modes
     web-mode
     js2-mode
     typescript-mode
@@ -68,8 +69,11 @@
  'after-init-hook
  '(lambda ()
     (setq x-underline-at-descent-line t)
-    (load-theme 'blackboard t)
+    (load-theme 'material t)
 
+    ;; Format line numbering and formatting
+    (global-linum-mode t)
+    (setq linum-format "%4d \u2502 ")
     (require 'magit)
     (global-set-key (kbd "C-c g s") 'magit-status)
     (global-set-key (kbd "C-c g b") 'magit-blame)
@@ -89,8 +93,8 @@
               (add-to-list 'load-path (concat local-elisp s)))))))
 
     ;; Datadog
-    (require 'datadog)
-    (global-set-key (kbd "C-c d d") 'datadog)
+    ;;(require 'datadog)
+    ;;(global-set-key (kbd "C-c d d") 'datadog)
 
     ;; Enable Company mode everywhere
     (require 'company)
@@ -100,10 +104,9 @@
 
     ;; multiple-cursors
     (require 'multiple-cursors)
-    (global-set-key (kbd "C-.") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
-    (global-set-key (kbd "C-c C-,") 'mc/mark-all-like-this)
+    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
     (require 'expand-region)
     (global-set-key (kbd "C-=") 'er/expand-region)))
-

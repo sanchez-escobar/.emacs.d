@@ -77,9 +77,13 @@
  backup-by-copying-when-linked t
  )
 
+(require 'whitespace)
+(setq whitespace-style '(face empty tabs lines-tail trailing))
+(setq-default whitespace-line-column 100)
+(global-whitespace-mode t)
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
 (setq-default
- ;; Show white spaces at the end of lines
- show-trailing-whitespace t
  ;; Do not show the cursor in non-active window
  cursor-in-non-selected-windows nil
  use-dialog-box nil
